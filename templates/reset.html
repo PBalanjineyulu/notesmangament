@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="row justify-content-center mt-5">
+
+<div class="col-md-5">
+
+<div class="card shadow">
+
+<div class="card-header bg-warning text-dark text-center">
+
+<h4>Reset Password</h4>
+
+</div>
+
+<div class="card-body">
+
+<form method="POST">
+
+<div class="mb-3">
+
+<label class="form-label">
+Enter OTP
+</label>
+
+<input
+type="text"
+name="otp"
+class="form-control"
+placeholder="Enter OTP sent to your email"
+required>
+
+</div>
+
+<div class="mb-3">
+
+<label class="form-label">
+New Password
+</label>
+
+<input
+type="password"
+name="password"
+class="form-control"
+placeholder="Enter new password"
+required>
+
+</div>
+
+<button type="submit" class="btn btn-success w-100">
+
+Update Password
+
+</button>
+
+<div class="text-center mt-3">
+
+<a href="/login">Back to Login</a>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

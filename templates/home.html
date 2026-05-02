@@ -1,0 +1,283 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    body {
+        background: linear-gradient(-45deg, #0f172a, #1e293b, #334155, #f59e0b);
+        background-size: 400% 400%;
+        animation: gradientMove 12s ease infinite;
+    }
+
+    @keyframes gradientMove {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .home-hero {
+        min-height: 82vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 50px 15px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .home-hero::before,
+    .home-hero::after {
+        content: "";
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(52, 35, 240, 0.12);
+        animation: floatShape 6s ease-in-out infinite alternate;
+    }
+
+    .home-hero::before {
+        width: 180px;
+        height: 180px;
+        top: 10%;
+        left: 8%;
+    }
+
+    .home-hero::after {
+        width: 120px;
+        height: 120px;
+        bottom: 12%;
+        right: 10%;
+        animation-delay: 1.5s;
+    }
+
+    @keyframes floatShape {
+        from {
+            transform: translateY(0);
+        }
+
+        to {
+            transform: translateY(-25px);
+        }
+    }
+
+    .hero-box {
+        max-width: 980px;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(16px);
+        padding: 65px 45px;
+        border-radius: 32px;
+        box-shadow: 0 30px 80px rgba(15, 23, 42, 0.35);
+        text-align: center;
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-badge {
+        display: inline-block;
+        background: rgba(245, 158, 11, 0.15);
+        color: #b45309;
+        padding: 8px 18px;
+        border-radius: 50px;
+        font-weight: 800;
+        margin-bottom: 18px;
+    }
+
+    .hero-icon {
+        font-size: 58px;
+        margin-bottom: 10px;
+    }
+
+    .hero-box h1 {
+        font-size: clamp(2.3rem, 5vw, 4.2rem);
+        font-weight: 900;
+        color: #0f172a;
+        line-height: 1.1;
+    }
+
+    .hero-box p {
+        max-width: 680px;
+        margin: 20px auto 0;
+        color: #475569;
+        font-size: 1.12rem;
+    }
+
+    .hero-actions {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 32px;
+    }
+
+    .start-btn {
+        background: linear-gradient(135deg, #ffc107, #ff9900);
+        color: #111827;
+        border: none;
+        border-radius: 50px;
+        padding: 14px 36px;
+        font-weight: 900;
+        transition: 0.3s;
+    }
+
+    .start-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(255, 153, 0, 0.45);
+        color: #111827;
+    }
+
+    .login-home-btn {
+        background: #0f172a;
+        color: #fff;
+        border-radius: 50px;
+        padding: 14px 36px;
+        font-weight: 900;
+        transition: 0.3s;
+        text-decoration: none;
+    }
+
+    .login-home-btn:hover {
+        transform: translateY(-3px);
+        background: #1e293b;
+        color: #ffc107;
+    }
+
+    .small-features {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 34px;
+    }
+
+    .feature-pill {
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        padding: 11px 18px;
+        border-radius: 50px;
+        font-weight: 800;
+        color: #334155;
+        font-size: 14px;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.07);
+    }
+
+    .stats-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 36px;
+    }
+
+    .stat-card {
+        background: #f8fafc;
+        border: 1px solid #e5e7eb;
+        border-radius: 20px;
+        padding: 18px 12px;
+    }
+
+    .stat-card h3 {
+        color: #0f172a;
+        font-weight: 900;
+        margin-bottom: 4px;
+    }
+
+    .stat-card span {
+        color: #64748b;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    @media (max-width: 768px) {
+        .hero-box {
+            padding: 48px 24px;
+        }
+
+        .stats-row {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .home-hero {
+            padding: 25px 10px;
+            min-height: 82vh;
+        }
+
+        .hero-box {
+            padding: 38px 18px;
+            border-radius: 24px;
+        }
+
+        .hero-icon {
+            font-size: 46px;
+        }
+
+        .hero-box h1 {
+            font-size: 28px;
+        }
+
+        .hero-box p {
+            font-size: 15px;
+        }
+
+        .start-btn,
+        .login-home-btn {
+            width: 100%;
+            padding: 13px 24px;
+        }
+    }
+</style>
+
+<div class="home-hero">
+    <div class="hero-box">
+
+        <div class="hero-badge">Premium Notes Management</div>
+
+        <div class="hero-icon">📝</div>
+
+        <h1>Organize Your Notes Like a Pro</h1>
+
+        <p>
+            Create, manage, and access your notes securely with a clean,
+            responsive, and professional notes management system.
+        </p>
+
+        <div class="hero-actions">
+            <a href="/register" class="btn start-btn">Get Started</a>
+            <a href="/login" class="login-home-btn">Login</a>
+        </div>
+
+        <div class="small-features">
+            <span class="feature-pill">⚡ Quick Notes</span>
+            <span class="feature-pill">🔒 Secure Login</span>
+            <span class="feature-pill">📱 Mobile Friendly</span>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-card">
+                <h3>Easy</h3>
+                <span>Simple note creation</span>
+            </div>
+
+            <div class="stat-card">
+                <h3>Secure</h3>
+                <span>Protected user access</span>
+            </div>
+
+            <div class="stat-card">
+                <h3>Fast</h3>
+                <span>Manage notes quickly</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

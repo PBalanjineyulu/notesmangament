@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    .notes-page {
+        width: 100%;
+        min-height: 85vh;
+        padding: 45px 16px;
+        background: #f1f5f9;
+        overflow-x: hidden;
+    }
+
+    .notes-header h2 {
+        font-weight: 900;
+        color: #0f172a;
+    }
+
+    .notes-header p {
+        color: #64748b;
+    }
+
+    .search-card {
+        background: #ffffff;
+        padding: 16px;
+        border-radius: 22px;
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+        margin-bottom: 28px;
+    }
+
+    .input-group-text,
+    .form-control,
+    .search-btn,
+    .clear-btn {
+        height: 48px;
+    }
+
+    .input-group-text {
+        border-radius: 14px 0 0 14px;
+        background: #f8fafc;
+    }
+
+    .form-control:focus {
+        border-color: #14b8a6;
+        box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.18);
+    }
+
+    .search-btn {
+        background: #2563eb;
+        color: white;
+        font-weight: 800;
+        border: none;
+    }
+
+    .clear-btn {
+        font-weight: 800;
+    }
+
+    .note-card {
+        height: 100%;
+        border: none;
+        border-radius: 24px;
+        background: #ffffff;
+        box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+        transition: 0.25s;
+        overflow: hidden;
+    }
+
+    .note-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 45px rgba(15, 23, 42, 0.14);
+    }
+
+    .note-title {
+        font-weight: 900;
+        color: #0f172a;
+    }
+
+    .note-content {
+        color: #64748b;
+        line-height: 1.6;
+    }
+
+    .note-date {
+        color: #94a3b8;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .note-actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+
+    .note-actions .btn {
+        border-radius: 50px;
+        font-weight: 800;
+        padding: 7px 16px;
+    }
+
+    .empty-box {
+        background: #ffffff;
+        border-radius: 24px;
+        padding: 40px 20px;
+        text-align: center;
+        box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+    }
+
+    @media (max-width: 576px) {
+        .notes-page {
+            padding: 28px 12px;
+        }
+
+        .search-card .input-group {
+            display: grid;
+            gap: 10px;
+        }
+
+        .input-group-text,
+        .form-control,
+        .search-btn,
+        .clear-btn {
+            width: 100%;
+            border-radius: 14px !important;
+        }
+
+        .note-actions .btn {
+            width: 100%;
+        }
+    }
+</style>
+
+<section class="notes-page">
+    <div class="container-fluid px-0">
+
+        <div class="notes-header mb-4">
+            <h2>📚 My Notes</h2>
+            <p>View, search, edit and manage all your saved notes.</p>
+        </div>
+
+        <div class="search-card">
+            <form action="/search" method="GET">
+                <div class="input-group">
+                    <span class="input-group-text">🔍</span>
+
+                    <input type="text" name="query" class="form-control"
+                        placeholder="Search your notes..."
+                        value="{{ request.args.get('query','') }}">
+
+                    <a href="/viewall" class="btn btn-outline-secondary clear-btn">
+                        Clear
+                    </a>
+
+                    <button class="btn search-btn">
+                        Search
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div class="row g-4 mx-0">
+
+            {% for note in notes %}
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="note-card">
+                    <div class="card-body d-flex flex-column p-4">
+
+                        <h5 class="note-title">
+                            {{ note.title }}
+                        </h5>
+
+                        <p class="note-content">
+                            {{ note.content[:120] }}{% if note.content|length > 120 %}...{% endif %}
+                        </p>
+
+                        <div class="mt-auto">
+                            <p class="note-date mb-3">
+                                {{ note.created_at }}
+                            </p>
+
+                            <div class="note-actions">
+                                <a href="/viewnotes/{{ note.id }}" class="btn btn-primary btn-sm">
+                                    View
+                                </a>
+
+                                <a href="/updatenote/{{ note.id }}" class="btn btn-warning btn-sm">
+                                    Edit
+                                </a>
+
+                                <a href="/deletenote/{{ note.id }}" class="btn btn-danger btn-sm">
+                                    Delete
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            {% else %}
+
+            <div class="col-12">
+                <div class="empty-box">
+                    <h4>No notes found</h4>
+                    <p class="text-muted mb-3">Start by adding your first note.</p>
+                    <a href="/addnote" class="btn btn-primary rounded-pill px-4 fw-bold">
+                        Add Note
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

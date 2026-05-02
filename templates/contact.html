@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    .contact-page {
+        width: 100%;
+        min-height: 85vh;
+        padding: 60px 18px;
+        overflow-x: hidden;
+
+        background:
+            radial-gradient(circle at top left, rgba(34, 197, 94, 0.25), transparent 35%),
+            radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.25), transparent 35%),
+            linear-gradient(135deg, #020617 0%, #0f172a 45%, #ecfeff 45%, #ecfeff 100%);
+    }
+
+    /* LEFT SECTION */
+    .contact-info {
+        color: #fff;
+    }
+
+    .contact-badge {
+        background: rgba(34, 197, 94, 0.18);
+        color: #4ade80;
+        padding: 8px 16px;
+        border-radius: 50px;
+        font-weight: 800;
+        display: inline-block;
+        margin-bottom: 18px;
+    }
+
+    .contact-info h1 {
+        font-weight: 900;
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        line-height: 1.1;
+    }
+
+    .contact-info p {
+        color: #cbd5e1;
+        margin-top: 18px;
+        max-width: 520px;
+    }
+
+    .info-card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-top: 18px;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 14px;
+        border-radius: 18px;
+    }
+
+    .info-icon {
+        width: 45px;
+        height: 45px;
+        border-radius: 14px;
+        background: linear-gradient(135deg, #22c55e, #3b82f6);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    /* FORM CARD */
+    .contact-card {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.96);
+        border-radius: 30px;
+        overflow: hidden;
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+    }
+
+    .contact-header {
+        background: linear-gradient(135deg, #22c55e, #3b82f6);
+        padding: 28px;
+        text-align: center;
+        color: #fff;
+    }
+
+    .contact-header h4 {
+        margin: 0;
+        font-weight: 900;
+    }
+
+    .contact-header p {
+        margin-top: 5px;
+    }
+
+    .contact-form {
+        padding: 34px;
+    }
+
+    .form-label {
+        font-weight: 800;
+        font-size: 14px;
+    }
+
+    .form-control {
+        border-radius: 14px;
+        padding: 12px;
+        border: 1px solid #d1d5db;
+    }
+
+    .form-control:focus {
+        border-color: #22c55e;
+        box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    /* BUTTON */
+    .contact-btn {
+        height: 52px;
+        border-radius: 50px;
+        border: none;
+        font-weight: 900;
+        color: white;
+        background: linear-gradient(135deg, #0f172a, #1e293b);
+        transition: 0.3s;
+    }
+
+    .contact-btn:hover {
+        transform: translateY(-2px);
+        color: #22c55e;
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    /* MOBILE */
+    @media (max-width: 991px) {
+        .contact-page {
+            background: linear-gradient(135deg, #020617, #0f172a);
+        }
+
+        .contact-info {
+            text-align: center;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .contact-page {
+            padding: 30px 12px;
+        }
+
+        .contact-form {
+            padding: 24px 18px;
+        }
+
+        .contact-card {
+            border-radius: 22px;
+        }
+    }
+</style>
+
+<section class="contact-page">
+    <div class="container-fluid px-0">
+        <div class="row align-items-center justify-content-center g-4 mx-0">
+
+            <!-- LEFT -->
+            <div class="col-12 col-lg-6">
+                <div class="contact-info">
+
+                    <span class="contact-badge">Get in Touch</span>
+
+                    <h1>We’d love to hear from you</h1>
+
+                    <p>
+                        Have questions, suggestions, or feedback?
+                        Reach out to us and we’ll respond quickly.
+                    </p>
+
+                    <div class="info-card">
+                        <div class="info-icon">📧</div>
+                        <div>
+                            <strong>Email</strong><br>
+                            <span class="text-light opacity-75">notesapp.support@gmail.com</span>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="info-icon">⚡</div>
+                        <div>
+                            <strong>Fast Response</strong><br>
+                            <span class="text-light opacity-75">We reply quickly</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- RIGHT -->
+            <div class="col-12 col-lg-6">
+                <div class="contact-card">
+
+                    <div class="contact-header">
+                        <h4>Contact Us</h4>
+                        <p>Send your message</p>
+                    </div>
+
+                    <div class="contact-form">
+                        <form method="POST">
+
+                            <div class="mb-3">
+                                <label class="form-label">Name</label>
+                                <input type="text" name="name" class="form-control" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" name="email" class="form-control" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label">Message</label>
+                                <textarea name="message" rows="5" class="form-control" required></textarea>
+                            </div>
+
+                            <button class="contact-btn w-100">
+                                Send Message
+                            </button>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

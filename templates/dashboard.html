@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<style>
+    .dashboard-page {
+        width: 100%;
+        min-height: 85vh;
+        padding: 50px 16px;
+        background: #f1f5f9; /* soft light background */
+    }
+
+    /* HERO */
+    .dashboard-hero {
+        margin-bottom: 30px;
+    }
+
+    .dashboard-hero h2 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        font-weight: 900;
+        color: #0f172a;
+    }
+
+    .dashboard-hero p {
+        color: #64748b;
+        max-width: 600px;
+    }
+
+    /* STATS */
+    .stat-box {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 22px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        text-align: center;
+        transition: 0.2s;
+    }
+
+    .stat-box:hover {
+        transform: translateY(-3px);
+    }
+
+    .stat-number {
+        font-size: 26px;
+        font-weight: 800;
+        color: #0f172a;
+    }
+
+    .stat-label {
+        color: #64748b;
+        font-size: 14px;
+    }
+
+    /* SEARCH */
+    .search-box {
+        margin: 30px 0;
+        background: #ffffff;
+        padding: 12px;
+        border-radius: 50px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+
+    .search-box input {
+        border: none;
+        outline: none;
+        width: 100%;
+        padding-left: 15px;
+        background: transparent;
+    }
+
+    .search-btn {
+        border-radius: 50px;
+        background: #2563eb;
+        color: #fff;
+        font-weight: 700;
+        border: none;
+        padding: 8px 20px;
+    }
+
+    .search-btn:hover {
+        background: #1d4ed8;
+    }
+
+    /* ACTION CARDS */
+    .action-card {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 28px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        transition: 0.2s;
+        text-align: center;
+    }
+
+    .action-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .action-icon {
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+
+    .action-card h5 {
+        font-weight: 800;
+        color: #0f172a;
+    }
+
+    .action-card p {
+        color: #64748b;
+    }
+
+    .action-btn {
+        margin-top: 10px;
+        border-radius: 50px;
+        padding: 10px 22px;
+        font-weight: 700;
+        background: #2563eb;
+        border: none;
+        color: #fff;
+    }
+
+    .action-btn:hover {
+        background: #1d4ed8;
+    }
+
+    /* MOBILE */
+    @media (max-width: 576px) {
+        .dashboard-page {
+            padding: 30px 12px;
+        }
+
+        .search-box {
+            border-radius: 18px;
+        }
+    }
+</style>
+
+<section class="dashboard-page">
+<div class="container-fluid">
+
+    <!-- HERO -->
+    <div class="dashboard-hero">
+        <h2>Dashboard</h2>
+        <p>Manage your notes in a clean and simple workspace.</p>
+    </div>
+
+    <!-- STATS -->
+    <div class="row g-3">
+        <div class="col-12 col-md-4">
+            <div class="stat-box">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Notes</div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="stat-box">
+                <div class="stat-number">Fast</div>
+                <div class="stat-label">Search</div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+            <div class="stat-box">
+                <div class="stat-number">Secure</div>
+                <div class="stat-label">Access</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search-box mt-4">
+        <form action="/search" method="GET" class="d-flex">
+            <input type="text" name="query" placeholder="Search notes..." required>
+            <button class="search-btn">Search</button>
+        </form>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="row g-4 mt-3">
+
+        <div class="col-12 col-md-6">
+            <div class="action-card">
+                <div class="action-icon">➕</div>
+                <h5>Add Note</h5>
+                <p>Create and save your ideas easily.</p>
+                <a href="/addnote" class="btn action-btn">Add Note</a>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="action-card">
+                <div class="action-icon">📚</div>
+                <h5>View Notes</h5>
+                <p>Access and manage all your notes.</p>
+                <a href="/viewall" class="btn action-btn">View Notes</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</section>
+
+{% endblock %}
